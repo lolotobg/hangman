@@ -10,7 +10,7 @@
 
     char RevealLetter();
      
-    bool GuessLetter(char letter);
+    int GuessLetter(char letter);
 
     string GetCurrentProgress();    
 }
