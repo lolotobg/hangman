@@ -3,7 +3,6 @@
 class besenica
 {
 	// besenicata e egati tupata igra! ujasssssssssssss, spasete me ot besiloto!
-
     private string wordToGuess;
     private char[] guessedLetters;
     private int mistackes;
@@ -13,15 +12,10 @@ class besenica
         ReSet();
     }
 
-
-
     public void ReSet()
     {
         this.wordToGuess = IzberiRandomWord();
         guessedLetters = new char[wordToGuess.Length];
-
-
-
 
         for (int i = 0; i < wordToGuess.Length; i++)
         {
@@ -54,7 +48,6 @@ class besenica
         }
         return toReturnt;
     }
-
 
     public int NumberOccuranceOfLetter(char letter) 
     {
@@ -95,7 +88,6 @@ class besenica
         return true;
     }
 
-
     private string[] words = {"computer", "programmer", "software", "debugger","compiler", "developer", "algorithm",
                                       "array", "method", "variable" };
 
@@ -103,14 +95,8 @@ class besenica
 
     private string IzberiRandomWord()
     {
-
-
-
-
         int choice = randomGenerator.Next(words.Length);
 
         return words[choice];
     }
-
-
 }
