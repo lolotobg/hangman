@@ -66,6 +66,20 @@ class Hangman
         }
     }
 
+    private static void HandleUserGuessInput()
+    {
+        int occuranses = game.NumberOccuranceOfLetter(command[0]);
+        //TODO: if input is not in english must handle with a differrent message than the ones bellow
+        if (occuranses == 0)
+        {
+            Console.WriteLine("Sorry! There are no unrevealed letters “{0}”.", command[0]);
+        }
+        else
+        {
+            Console.WriteLine("Good job! You revealed {0} letter(s).", occuranses);
+        }
+    }
+
     private static void GameLoop()
     {
         do
@@ -92,16 +106,7 @@ class Hangman
                 command.ToLower();
                 if (command.Length == 1)
                 {
-                    int occuranses = game.NumberOccuranceOfLetter(command[0]);
-                    //TODO: if input is not in english must handle with a differrent message than the ones bellow
-                    if (occuranses == 0)
-                    {
-                        Console.WriteLine("Sorry! There are no unrevealed letters “{0}”.", command[0]);
-                    }
-                    else
-                    {
-                        Console.WriteLine("Good job! You revealed {0} letter(s).", occuranses);
-                    }
+                    HandleUserGuessInput();
                 }
                 else
                 {
