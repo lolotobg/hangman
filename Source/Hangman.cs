@@ -2,12 +2,21 @@
 
 class Hangman
 {
-    static void Main()
+    static ScoreBoard scoreBoard;
+    static besenica game;
+    static string command;
+
+
+    static void Initialize()
     {
-        ScoreBoard scoreBoard = new ScoreBoard();
-        besenica game = new besenica();
+        scoreBoard = new ScoreBoard();
+        game = new besenica();
         Console.WriteLine("Welcome to “Hangman” game. Please try to guess my secret word.");
-        string command = null;
+        command = null;
+    }
+
+    private static void GameLoop()
+    {
         do
         {
             Console.WriteLine();
@@ -44,6 +53,7 @@ class Hangman
                 if (command.Length == 1)
                 {
                     int occuranses = game.NumberOccuranceOfLetter(command[0]);
+                    //TODO: if input is not in english must handle with a differrent message than the ones bellow
                     if (occuranses == 0)
                     {
                         Console.WriteLine("Sorry! There are no unrevealed letters “{0}”.", command[0]);
@@ -94,5 +104,11 @@ class Hangman
                 }
                 break;
         }
+    }
+
+    static void Main()
+    {
+        Initialize();
+        GameLoop();
     }
 }
