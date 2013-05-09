@@ -80,6 +80,21 @@ class Hangman
         }
     }
 
+    private static void HandleInput()
+    {
+        Console.Write("Enter your guess: ");
+        command = Console.ReadLine();
+        command.ToLower();
+        if (command.Length == 1)
+        {
+            HandleUserGuessInput();
+        }
+        else
+        {
+            ExecuteCommand(command, scoreBoard, game);
+        }
+    }
+
     private static void GameLoop()
     {
         do
@@ -101,17 +116,7 @@ class Hangman
             }
             else
             {
-                Console.Write("Enter your guess: ");
-                command = Console.ReadLine();
-                command.ToLower();
-                if (command.Length == 1)
-                {
-                    HandleUserGuessInput();
-                }
-                else
-                {
-                    ExecuteCommand(command, scoreBoard, game);
-                }
+                HandleInput();
             }
         } while (command != "exit");
     }
