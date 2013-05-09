@@ -15,63 +15,23 @@ class Hangman
         command = null;
     }
 
-    private static void GameLoop()
+    private static void CheckScoreHasMadeScoreBoard()
     {
-        do
+        if (scoreBoard.GetWorstTopScore() <= game.Mistackes)
         {
-            Console.WriteLine();
-            game.PrintCurrentProgress();
-            if (game.isOver())
-            {
-                if (game.HelpUsed)
-                {
-                    Console.WriteLine("You won with {0} mistake(s) but you have cheated." +
-                        " You are not allowed to enter into the scoreboard.", game.Mistackes);
-                }
-                else
-                {
-                    if (scoreBoard.GetWorstTopScore() <= game.Mistackes)
-                    {
-                        Console.WriteLine("You won with {0} mistake(s) but you score did not enter in the scoreboard",
-                            game.Mistackes);
-                    }
-                    else
-                    {
-                        Console.Write("Please enter your name for the top scoreboard: ");
-                        string name = Console.ReadLine();
-                        scoreBoard.AddNewScore(name, game.Mistackes);
-                        scoreBoard.Print();
-                    }
-                }
-                game.ReSet();
-            }
-            else
-            {
-                Console.Write("Enter your guess: ");
-                command = Console.ReadLine();
-                command.ToLower();
-                if (command.Length == 1)
-                {
-                    int occuranses = game.NumberOccuranceOfLetter(command[0]);
-                    //TODO: if input is not in english must handle with a differrent message than the ones bellow
-                    if (occuranses == 0)
-                    {
-                        Console.WriteLine("Sorry! There are no unrevealed letters “{0}”.", command[0]);
-                    }
-                    else
-                    {
-                        Console.WriteLine("Good job! You revealed {0} letter(s).", occuranses);
-                    }
-                }
-                else
-                {
-                    ExecuteCommand(command, scoreBoard, game);
-                }
-            }
-        } while (command != "exit");
+            Console.WriteLine("You won with {0} mistake(s) but you score did not enter in the scoreboard",
+                game.Mistackes);
+        }
+        else
+        {
+            Console.Write("Please enter your name for the top scoreboard: ");
+            string name = Console.ReadLine();
+            scoreBoard.AddNewScore(name, game.Mistackes);
+            scoreBoard.Print();
+        }
     }
 
-    static void ExecuteCommand(string command, ScoreBoard scoreBoard, besenica game) 
+    static void ExecuteCommand(string command, ScoreBoard scoreBoard, besenica game)
     {
         switch (command)
         {
@@ -104,6 +64,51 @@ class Hangman
                 }
                 break;
         }
+    }
+
+    private static void GameLoop()
+    {
+        do
+        {
+            Console.WriteLine();
+            game.PrintCurrentProgress();
+            if (game.isOver())
+            {
+                if (game.HelpUsed)
+                {
+                    Console.WriteLine("You won with {0} mistake(s) but you have cheated." +
+                        " You are not allowed to enter into the scoreboard.", game.Mistackes);
+                }
+                else
+                {
+                    CheckScoreHasMadeScoreBoard();
+                }
+                game.ReSet();
+            }
+            else
+            {
+                Console.Write("Enter your guess: ");
+                command = Console.ReadLine();
+                command.ToLower();
+                if (command.Length == 1)
+                {
+                    int occuranses = game.NumberOccuranceOfLetter(command[0]);
+                    //TODO: if input is not in english must handle with a differrent message than the ones bellow
+                    if (occuranses == 0)
+                    {
+                        Console.WriteLine("Sorry! There are no unrevealed letters “{0}”.", command[0]);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Good job! You revealed {0} letter(s).", occuranses);
+                    }
+                }
+                else
+                {
+                    ExecuteCommand(command, scoreBoard, game);
+                }
+            }
+        } while (command != "exit");
     }
 
     static void Main()
