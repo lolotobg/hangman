@@ -43,7 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="besenica.cs" />
-    <Compile Include="Hangman.cs" />
+    <Compile Include="GameSession.cs" />
     <Compile Include="IHangman.cs" />
     <Compile Include="IScoreBoard.cs" />
     <Compile Include="ScoreBoard.cs" />

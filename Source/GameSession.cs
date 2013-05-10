@@ -1,6 +1,6 @@
 ﻿using System;
 
-class Hangman
+class GameSession
 {
     static ScoreBoard scoreBoard;
     static besenica game;
