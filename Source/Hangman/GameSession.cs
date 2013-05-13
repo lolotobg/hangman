@@ -3,14 +3,14 @@
 class GameSession
 {
     static ScoreBoard scoreBoard;
-    static besenica game;
+    static Hangman game;
     static string command;
 
 
     static void Initialize()
     {
         scoreBoard = new ScoreBoard();
-        game = new besenica();
+        game = new Hangman();
         Console.WriteLine("Welcome to “Hangman” game. Please try to guess my secret word.");
         command = null;
     }
@@ -31,7 +31,7 @@ class GameSession
         }
     }
 
-    static void ExecuteCommand(string command, ScoreBoard scoreBoard, besenica game)
+    static void ExecuteCommand(string command, ScoreBoard scoreBoard, Hangman game)
     {
         switch (command)
         {

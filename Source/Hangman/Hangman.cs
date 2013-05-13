@@ -1,13 +1,13 @@
 ﻿using System;
 
-class besenica
+class Hangman
 {
 	// besenicata e egati tupata igra! ujasssssssssssss, spasete me ot besiloto!
     private string wordToGuess;
     private char[] guessedLetters;
     private int mistackes;
     private bool helpUsed;
-    public besenica() 
+    public Hangman() 
     {
         ReSet();
     }
