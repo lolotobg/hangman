@@ -6,7 +6,6 @@ class GameSession
     static Hangman game;
     static string command;
 
-
     static void Initialize()
     {
         scoreBoard = new ScoreBoard();
@@ -17,16 +16,16 @@ class GameSession
 
     private static void CheckScoreHasMadeScoreBoard()
     {
-        if (scoreBoard.GetWorstTopScore() <= game.Mistackes)
+        if (scoreBoard.GetWorstTopScore() <= game.Mistakes)
         {
             Console.WriteLine("You won with {0} mistake(s) but you score did not enter in the scoreboard",
-                game.Mistackes);
+                game.Mistakes);
         }
         else
         {
             Console.Write("Please enter your name for the top scoreboard: ");
             string name = Console.ReadLine();
-            scoreBoard.AddNewScore(name, game.Mistackes);
+            scoreBoard.AddNewScore(name, game.Mistakes);
             Console.WriteLine(scoreBoard.ToString());
         }
     }
@@ -42,7 +41,7 @@ class GameSession
                 break;
             case "help":
                 {
-                    char revealedLetter = game.RevealALetter();
+                    char revealedLetter = game.RevealLetter();
                     Console.WriteLine("OK, I reveal for you the next letter '{0}'.", revealedLetter);
                 }
                 break;
@@ -50,7 +49,7 @@ class GameSession
                 {
                     scoreBoard.Reset();
                     Console.WriteLine("\nWelcome to “Hangman” game. Please try to guess my secret word.");
-                    game.ReSet();
+                    game.Reset();
                 }
                 break;
             case "exit":
@@ -68,7 +67,7 @@ class GameSession
 
     private static void HandleUserGuessInput()
     {
-        int occuranses = game.NumberOccuranceOfLetter(command[0]);
+        int occuranses = game.GuessLetter(command[0]);
         //TODO: if input is not in english must handle with a differrent message than the ones bellow
         if (occuranses == 0)
         {
@@ -100,19 +99,22 @@ class GameSession
         do
         {
             Console.WriteLine();
-            game.PrintCurrentProgress();
-            if (game.isOver())
+            Console.Write("The secret word is: ");
+            string currentState = game.GetCurrentStateOfWord();
+            Console.WriteLine(currentState);
+            Console.WriteLine();
+            if (game.IsOver())
             {
                 if (game.HelpUsed)
                 {
                     Console.WriteLine("You won with {0} mistake(s) but you have cheated." +
-                        " You are not allowed to enter into the scoreboard.", game.Mistackes);
+                        " You are not allowed to enter into the scoreboard.", game.Mistakes);
                 }
                 else
                 {
                     CheckScoreHasMadeScoreBoard();
                 }
-                game.ReSet();
+                game.Reset();
             }
             else
             {

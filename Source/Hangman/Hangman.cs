@@ -1,18 +1,20 @@
 ﻿using System;
+using System.Text;
 
 class Hangman
 {
 	// besenicata e egati tupata igra! ujasssssssssssss, spasete me ot besiloto!
     private string wordToGuess;
     private char[] guessedLetters;
-    private int mistackes;
+    private int mistakes;
     private bool helpUsed;
+
     public Hangman() 
     {
-        ReSet();
+        Reset();
     }
 
-    public void ReSet()
+    public void Reset()
     {
         this.wordToGuess = IzberiRandomWord();
         guessedLetters = new char[wordToGuess.Length];
@@ -21,37 +23,38 @@ class Hangman
         {
             guessedLetters[i] = '_';
         }
-        mistackes = 0;
+
+        mistakes = 0;
         helpUsed = false;
     }
 
-    public int Mistackes
+    public int Mistakes
     {
-        get{return mistackes;}
+        get { return this.mistakes; }
     }
 
     public bool HelpUsed 
     {
-        get { return helpUsed; }
+        get { return this.helpUsed; }
     }
 
-    public char RevealALetter() 
+    public char RevealLetter() 
     {
-        char toReturnt = char.MinValue;
+        char letterToReveal = char.MinValue;
         for (int i = 0; i < guessedLetters.Length; i++)
         {
             if (guessedLetters[i] == '_') 
             {
                 guessedLetters[i] = wordToGuess[i];
-                toReturnt = wordToGuess[i];
+                letterToReveal = wordToGuess[i];
                 helpUsed = true;
                 break;
             }
         }
-        return toReturnt;
+        return letterToReveal;
     }
 
-    public int NumberOccuranceOfLetter(char letter) 
+    public int GuessLetter(char letter) 
     {
         int count = 0;
         for (int i = 0; i < wordToGuess.Length; i++)
@@ -62,21 +65,23 @@ class Hangman
                 count++;
             }
         }
-        if (count == 0) { mistackes++; }
+        if (count == 0) { mistakes++; }
         return count;
     }
 
-    public void PrintCurrentProgress() 
+    public string GetCurrentStateOfWord() 
     {
-        Console.Write("The secret word is: ");
+        StringBuilder word = new StringBuilder();
+        
         for (int i = 0; i < guessedLetters.Length; i++)
         {
-            Console.Write("{0} ", guessedLetters[i]);
+            word.Append(guessedLetters[i]);
+            word.Append(' ');
         }
-        Console.WriteLine();
+        return word.ToString();    
     }
 
-    public bool isOver() 
+    public bool IsOver() 
     {
         for (int i = 0; i < guessedLetters.Length; i++)
         {
@@ -93,7 +98,7 @@ class Hangman
     private string[] words = {"computer", "programmer", "software", "debugger","compiler", "developer", "algorithm",
                                       "array", "method", "variable" };
 
-    private Random randomGenerator = new Random();
+    private readonly Random randomGenerator = new Random();
 
     private string IzberiRandomWord()
     {
