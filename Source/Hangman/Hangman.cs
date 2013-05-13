@@ -81,12 +81,13 @@ class Hangman
             word.Append(this.guessedLetters[i]);
             word.Append(' ');
         }
+
         return word.ToString();    
     }
 
     private void Initialize()
     {
-        this.wordToGuess = IzberiRandomWord();
+        this.wordToGuess = GetRandomWord();
         this.guessedLetters = new char[wordToGuess.Length];
 
         for (int i = 0; i < this.wordToGuess.Length; i++)
@@ -103,7 +104,7 @@ class Hangman
 
     private readonly Random randomGenerator = new Random();
 
-    private string IzberiRandomWord()
+    private string GetRandomWord()
     {
         int choice = randomGenerator.Next(words.Length);
 
