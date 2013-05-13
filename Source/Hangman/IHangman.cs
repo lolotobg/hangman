@@ -6,11 +6,11 @@
 
     bool IsOver { get; }
 
-    void Reset();
-
     char RevealLetter();
      
     int GuessLetter(char letter);
 
-    string GetCurrentProgress();    
+    string GetCurrentStateOfWord();
+
+    void Reset();
 }
