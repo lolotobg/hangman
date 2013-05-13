@@ -48,7 +48,7 @@ class GameSession
                 break;
             case "restart":
                 {
-                    scoreBoard.ReSet();
+                    scoreBoard.Reset();
                     Console.WriteLine("\nWelcome to “Hangman” game. Please try to guess my secret word.");
                     game.ReSet();
                 }

@@ -1,20 +1,32 @@
 ﻿using System;
 
-class ScoreBoard
+public class ScoreBoard
 {
-    public const int NUMBER_OF_SCORES = 5;
-    private string[] scoreNames = new string[NUMBER_OF_SCORES];
-    private int[] mistackes = new int[NUMBER_OF_SCORES];
+    public const int ScoresCount = 5;
+    private readonly string[] topPlayers = new string[ScoresCount];
+    private readonly int[] mistakes = new int[ScoresCount];
     private bool isEmpty;
 
     public ScoreBoard() 
     {
-        for (int i = 0; i < scoreNames.Length; i++)
+        for (int i = 0; i < topPlayers.Length; i++)
         {
-            scoreNames[i] = null;
-            mistackes[i] = int.MaxValue;
+            topPlayers[i] = null;
+            mistakes[i] = int.MaxValue;
         }
         isEmpty = true;
+    }
+
+    public string[] TopPlayers
+    {
+        get { return this.topPlayers; }
+        private set { }
+    }
+
+    public int[] Mistakes
+    { 
+        get { return this.mistakes; } 
+        private set { }
     }
 
     public void Print() 
@@ -26,69 +38,67 @@ class ScoreBoard
         else 
         {
             Console.WriteLine("Scoreboard:");
-            int i=0;
-            while (scoreNames[i] != null) 
+          
+            for (int i = 0; i < topPlayers.Length; i++)
             {
-                Console.WriteLine("{0}. {1} ---> {2} mistacke(s)!", i + 1, scoreNames[i], mistackes[i]);
-                i++;
-                if (i >= scoreNames.Length) 
+                if (topPlayers[i] != null)
                 {
-                    break;
+                    Console.WriteLine("{0}. {1} ---> {2} mistake(s)!", i + 1, topPlayers[i], mistakes[i]);
                 }
             }
         }
     }
 
-    public void AddNewScore(string nickname, int mistakes) 
+    public void AddNewScore(string name, int mistakesCount) 
     {
-        int indexToPutNewScore = FindIndexWhereToPutNewScore(mistakes);
-        if (indexToPutNewScore == scoreNames.Length)
+        int indexToPutNewScore = FindIndexWhereToPutNewScore(mistakesCount);
+        if (indexToPutNewScore == topPlayers.Length)
         {
             return;
         }
         else 
         {
             MoveScoresDownByOnePosition(indexToPutNewScore);
-            scoreNames[indexToPutNewScore] = nickname;
-            mistackes[indexToPutNewScore] = mistakes;
+            topPlayers[indexToPutNewScore] = name;
+            mistakes[indexToPutNewScore] = mistakesCount;
             isEmpty = false;
         }
     }
 
-    private int FindIndexWhereToPutNewScore(int mistakes) 
+    private int FindIndexWhereToPutNewScore(int mistakesCount) 
     {
-        for (int i = 0; i < mistackes.Length; i++)
+        for (int i = 0; i < mistakes.Length; i++)
         {
-            if (mistakes < mistackes[i])
+            if (mistakesCount < mistakes[i])
             {
                 return i;
             }
         }
-        return scoreNames.Length;
+        return topPlayers.Length;
     }
 
     private void MoveScoresDownByOnePosition(int startPosition) 
     {
-        for (int i = scoreNames.Length - 1; i > startPosition; i--)
+        for (int i = topPlayers.Length - 1; i > startPosition; i--)
         {
-            scoreNames[i] = scoreNames[i - 1];
-            mistackes[i] = mistackes[i - 1];
+            topPlayers[i] = topPlayers[i - 1];
+            mistakes[i] = mistakes[i - 1];
         }
     }
 
     public int GetWorstTopScore() 
     {
         int worstTopScore = int.MaxValue;
-        if (scoreNames[scoreNames.Length - 1] != null) { worstTopScore = mistackes[scoreNames.Length - 1]; }
+        if (topPlayers[topPlayers.Length - 1] != null) { worstTopScore = mistakes[topPlayers.Length - 1]; }
         return worstTopScore;
     }
 
-    public void ReSet() 
+    public void Reset() 
     {
-        for (int i = 0; i < scoreNames.Length; i++)
+        for (int i = 0; i < topPlayers.Length; i++)
         {
-            scoreNames[i] = null;
-            mistackes[i] = 0;
+            topPlayers[i] = null;
+            mistakes[i] = 0;
         }
         isEmpty = true;
     }
