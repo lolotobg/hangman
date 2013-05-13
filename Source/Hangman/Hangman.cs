@@ -10,7 +10,7 @@ class Hangman
 
     public Hangman() 
     {
-        Reset();
+        Initialize();
     }
 
     public int Mistakes
@@ -79,7 +79,7 @@ class Hangman
         return word.ToString();    
     }
 
-    public void Reset()
+    private void Initialize()
     {
         this.wordToGuess = IzberiRandomWord();
         this.guessedLetters = new char[wordToGuess.Length];

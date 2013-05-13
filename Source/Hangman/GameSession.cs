@@ -49,7 +49,7 @@ class GameSession
                 {
                     scoreBoard.Reset();
                     Console.WriteLine("\nWelcome to “Hangman” game. Please try to guess my secret word.");
-                    game.Reset();
+                    game = new Hangman();
                 }
                 break;
             case "exit":
@@ -114,7 +114,7 @@ class GameSession
                 {
                     CheckScoreHasMadeScoreBoard();
                 }
-                game.Reset();
+                game = new Hangman();
             }
             else
             {
