@@ -27,7 +27,7 @@ class GameSession
             Console.Write("Please enter your name for the top scoreboard: ");
             string name = Console.ReadLine();
             scoreBoard.AddNewScore(name, game.Mistackes);
-            scoreBoard.Print();
+            Console.WriteLine(scoreBoard.ToString());
         }
     }
 
@@ -37,7 +37,7 @@ class GameSession
         {
             case "top":
                 {
-                    scoreBoard.Print();
+                    Console.WriteLine(scoreBoard.ToString());
                 }
                 break;
             case "help":

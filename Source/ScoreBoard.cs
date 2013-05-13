@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Text;
+using System.Collections.Generic;
 
 public class ScoreBoard
 {
-    public const int ScoresCount = 5;
-    private readonly string[] topPlayers = new string[ScoresCount];
-    private readonly int[] mistakes = new int[ScoresCount];
+    public const int MaxScoresCount = 5;
+    private readonly string[] topPlayers = new string[MaxScoresCount];
+    private readonly int[] mistakes = new int[MaxScoresCount];
     private bool isEmpty;
 
     public ScoreBoard() 
@@ -29,24 +31,26 @@ public class ScoreBoard
         private set { }
     }
 
-    public void Print() 
+    public override string ToString()
     {
+        StringBuilder sb = new StringBuilder();
+
         if (isEmpty)
         {
-            Console.WriteLine("Scoreboard is empty!");
+            sb.AppendLine("Scoreboard is empty.");
         }
-        else 
+        else
         {
-            Console.WriteLine("Scoreboard:");
-          
             for (int i = 0; i < topPlayers.Length; i++)
             {
                 if (topPlayers[i] != null)
                 {
-                    Console.WriteLine("{0}. {1} ---> {2} mistake(s)!", i + 1, topPlayers[i], mistakes[i]);
+                    sb.AppendFormat("{0}. {1} ---> {2} mistake(s)!", i + 1, topPlayers[i], mistakes[i]);
+                    sb.AppendLine();
                 }
             }
         }
+        return sb.ToString();
     }
 
     public void AddNewScore(string name, int mistakesCount) 
@@ -86,7 +90,7 @@ public class ScoreBoard
         }
     }
 
-    public int GetWorstTopScore() 
+    public int GetWorstTopScore()
     {
         int worstTopScore = int.MaxValue;
         if (topPlayers[topPlayers.Length - 1] != null) { worstTopScore = mistakes[topPlayers.Length - 1]; }
