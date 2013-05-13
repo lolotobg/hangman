@@ -29,10 +29,12 @@ class besenica
     {
         get{return mistackes;}
     }
+
     public bool HelpUsed 
     {
         get { return helpUsed; }
     }
+
     public char RevealALetter() 
     {
         char toReturnt = char.MinValue;
