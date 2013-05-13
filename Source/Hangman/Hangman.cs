@@ -23,7 +23,7 @@ class Hangman
         get { return this.helpUsed; }
     }
 
-    public bool IsOver()
+    public bool CheckGameIsOver()
     {
         for (int i = 0; i < guessedLetters.Length; i++)
         {
@@ -63,7 +63,12 @@ class Hangman
                 count++;
             }
         }
-        if (count == 0) { this.mistakes++; }
+
+        if (count == 0)
+        {
+            this.mistakes++;
+        }
+
         return count;
     }
 
