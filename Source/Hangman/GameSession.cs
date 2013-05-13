@@ -103,7 +103,7 @@ class GameSession
             string currentState = game.GetCurrentStateOfWord();
             Console.WriteLine(currentState);
             Console.WriteLine();
-            if (game.IsOver())
+            if (game.CheckGameIsOver())
             {
                 if (game.HelpUsed)
                 {
