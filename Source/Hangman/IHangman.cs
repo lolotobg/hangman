@@ -11,6 +11,4 @@
     int GuessLetter(char letter);
 
     string GetCurrentStateOfWord();
-
-    void Reset();
 }
