@@ -47,7 +47,7 @@ public class ScoreBoard: IScoreBoard
     {
         ScoreEntry newScore = new ScoreEntry(name, mistakesCount);
 
-        if (highScores.Count <= MaxScoresCount)
+        if (highScores.Count < 5)
         {
             highScores.Add(newScore);
             highScores.Sort();
@@ -55,46 +55,18 @@ public class ScoreBoard: IScoreBoard
         }
         else
         {
-            highScores.RemoveAt(highScores.Count-1);
-        }
-    }
-
-
-    //    int indexToPutNewScore = FindIndexWhereToPutNewScore(mistakesCount);
-    //    if (indexToPutNewScore == topPlayers.Length)
-    //    {
-    //        return true;
-    //    }
-    //    else 
-    //    {
-    //        MoveScoresDownByOnePosition(indexToPutNewScore);
-    //        topPlayers[indexToPutNewScore] = name;
-    //        mistakes[indexToPutNewScore] = mistakesCount;
-    //        isEmpty = false;
-    //    }
-    //    return true;
-    //}
-
-    private int FindIndexWhereToPutNewScore(int mistakesCount)
-    {
-        for (int i = 0; i < mistakes.Length; i++)
-        {
-            if (mistakesCount < mistakes[i])
+            for (int i = 0; i < highScores.Count; i++)
             {
-                return i;
+                if (newScore.MistakesCount<highScores[i].MistakesCount)
+                {
+                    highScores.RemoveAt(highScores.Count-1);
+                    highScores.Add(newScore);
+                    highScores.Sort();
+                    break;
+                }
             }
         }
-        return topPlayers.Length;
     }
-
-    //private void MoveScoresDownByOnePosition(int startPosition) 
-    //{
-    //    for (int i = topPlayers.Length - 1; i > startPosition; i--)
-    //    {
-    //        topPlayers[i] = topPlayers[i - 1];
-    //        mistakes[i] = mistakes[i - 1];
-    //    }
-    //}
 
     public int GetWorstTopScore()
     {
