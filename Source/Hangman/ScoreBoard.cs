@@ -9,16 +9,22 @@ public class ScoreBoard: IScoreBoard
     private readonly int[] mistakes = new int[MaxScoresCount];
     private bool isEmpty;
 
-    private List<ScoreEntry> highScores = new List<ScoreEntry>();
+    private readonly List<ScoreEntry> highScores = new List<ScoreEntry>();
 
     public ScoreBoard() 
     {
-        for (int i = 0; i < topPlayers.Length; i++)
+        for (int i = 0; i < highScores.Count; i++)
         {
-            topPlayers[i] = null;
-            mistakes[i] = int.MaxValue;
+            highScores[i].Name = null;
+            highScores[i].MistakesCount = int.MaxValue;
         }
         isEmpty = true;
+    }
+
+    public bool IsEmpty
+    {
+        get { return this.isEmpty; }
+        private set { }
     }
 
     public override string ToString()
@@ -27,7 +33,7 @@ public class ScoreBoard: IScoreBoard
 
         if (isEmpty)
         {
-            sb.AppendLine("Scoreboard is empty.");
+            sb.Append("Scoreboard is empty.\n");
         }
         else
         {
@@ -35,8 +41,7 @@ public class ScoreBoard: IScoreBoard
             {
                 if (highScores[i] != null)
                 {
-                    sb.AppendFormat("{0}. {1} ---> {2} mistake(s)!", i + 1, highScores[i].Name, highScores[i].MistakesCount);
-                    sb.AppendLine();
+                    sb.AppendFormat("{0}. {1} ---> {2} mistake(s)!\n", i + 1, highScores[i].Name, highScores[i].MistakesCount);
                 }
             }
         }

@@ -25,7 +25,7 @@ public class ScoreEntry: IComparable<ScoreEntry>
 
         set
         {
-            if (value == null || value==string.Empty)
+            if (value == null || value == string.Empty)
             {
                 throw new ArgumentNullException("Name cannot be null or empty.", "name");
             }
