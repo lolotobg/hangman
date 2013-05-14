@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Text;
 
-class Hangman
+public class Hangman : IHangman
 {
     private string wordToGuess;
     private char[] guessedLetters;
     private int mistakes;
     private bool helpUsed;
+    private readonly Random randomGenerator = new Random();
+    private readonly string[] words = { "computer", "programmer", "software", "debugger", "compiler", 
+                                          "developer", "algorithm", "array", "method", "variable" };
 
     public Hangman() 
     {
@@ -15,15 +18,21 @@ class Hangman
 
     public int Mistakes
     {
-        get { return this.mistakes; }
+        get
+        {
+            return this.mistakes;
+        }
     }
 
     public bool HelpUsed 
     {
-        get { return this.helpUsed; }
+        get
+        {
+            return this.helpUsed;
+        }
     }
 
-    public bool CheckGameIsOver()
+    public bool IsOver()
     {
         for (int i = 0; i < guessedLetters.Length; i++)
         {
@@ -99,15 +108,15 @@ class Hangman
         this.helpUsed = false;
     }
 
-    private readonly string[] words = {"computer", "programmer", "software", "debugger","compiler", "developer", "algorithm",
-                                      "array", "method", "variable" };
-
-    private readonly Random randomGenerator = new Random();
-
     private string GetRandomWord()
     {
         int choice = randomGenerator.Next(words.Length);
 
         return words[choice];
+    }
+
+    public void Reset()
+    {
+        Initialize();
     }
 }

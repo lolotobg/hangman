@@ -4,7 +4,7 @@
 
     bool HelpUsed { get; }
 
-    bool GameIsOver();
+    bool IsOver();
 
     char RevealLetter();
      

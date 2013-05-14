@@ -3,7 +3,7 @@
 class GameSession
 {
     static ScoreBoard scoreBoard;
-    static Hangman game;
+    static IHangman game;
     static string command;
 
     static void Initialize()
@@ -30,7 +30,7 @@ class GameSession
         }
     }
 
-    static void ExecuteCommand(string command, ScoreBoard scoreBoard, Hangman game)
+    static void ExecuteCommand(string command, ScoreBoard scoreBoard, IHangman game)
     {
         switch (command)
         {
@@ -103,7 +103,7 @@ class GameSession
             string currentState = game.GetCurrentStateOfWord();
             Console.WriteLine(currentState);
             Console.WriteLine();
-            if (game.CheckGameIsOver())
+            if (game.IsOver())
             {
                 if (game.HelpUsed)
                 {
