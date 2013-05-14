@@ -25,7 +25,7 @@ class GameSession
         {
             Console.Write("Please enter your name for the top scoreboard: ");
             string name = Console.ReadLine();
-            scoreBoard.AddNewScore(name, game.Mistakes);
+            scoreBoard.AddScore(name, game.Mistakes);
             Console.WriteLine(scoreBoard.ToString());
         }
     }

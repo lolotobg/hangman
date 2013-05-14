@@ -1,6 +1,6 @@
 ﻿interface IScoreBoard
 {
-    bool AddScore(string name, int mistakesCount);
+    void AddScore(string name, int mistakesCount);
 
     void Reset();
 

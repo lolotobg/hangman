@@ -47,6 +47,7 @@
     <Compile Include="IHangman.cs" />
     <Compile Include="IScoreBoard.cs" />
     <Compile Include="ScoreBoard.cs" />
+    <Compile Include="ScoreEntry.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
