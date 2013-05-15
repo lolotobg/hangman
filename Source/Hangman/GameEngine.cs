@@ -26,11 +26,12 @@ namespace HangmanGame
             this.command = null;
         }
 
-        public void CheckScoreHasMadeScoreBoard()
+        public string CheckScoreHasMadeScoreBoard()
         {
+            string resultOutputString = null;
             if (this.scoreBoard.GetWorstTopScore() <= this.game.Mistakes)
             {
-                Console.WriteLine("You won with {0} mistake(s) but you score did not enter in the scoreboard",
+                resultOutputString = string.Format("You won with {0} mistake(s) but you score did not enter in the scoreboard",
                     this.game.Mistakes);
             }
             else
@@ -38,8 +39,9 @@ namespace HangmanGame
                 Console.Write("Please enter your name for the top scoreboard: ");
                 string name = Console.ReadLine();
                 this.scoreBoard.AddScore(name, this.game.Mistakes);
-                Console.WriteLine(this.scoreBoard.ToString());
+                resultOutputString = this.scoreBoard.ToString();
             }
+            return resultOutputString;
         }
 
         public string ExecuteCommand(string command)
@@ -67,18 +69,20 @@ namespace HangmanGame
             return resultStringOfExecution;
         }
 
-        public void HandleUserGuessInput(char guess)
+        public string HandleUserGuessInput(char guess)
         {
             int occuranses = this.game.GuessLetter(guess);
+            string resultOutputString = null;
             //TODO: if input is not in english must handle with a differrent message than the ones bellow
             if (occuranses == 0)
             {
-                Console.WriteLine("Sorry! There are no unrevealed letters “{0}”.", guess);
+                resultOutputString = string.Format("Sorry! There are no unrevealed letters “{0}”.", guess);
             }
             else
             {
-                Console.WriteLine("Good job! You revealed {0} letter(s).", occuranses);
+                resultOutputString = string.Format("Good job! You revealed {0} letter(s).", occuranses);
             }
+            return resultOutputString;
         }
 
         public void HandleInput()
@@ -88,7 +92,7 @@ namespace HangmanGame
             this.command.ToLower();
             if (this.command.Length == 1)
             {
-                this.HandleUserGuessInput(command[0]);
+                Console.WriteLine(this.HandleUserGuessInput(command[0]));
             }
             else
             {
@@ -114,7 +118,7 @@ namespace HangmanGame
                     }
                     else
                     {
-                        this.CheckScoreHasMadeScoreBoard();
+                        Console.WriteLine(this.CheckScoreHasMadeScoreBoard());
                     }
                     string word = this.GetRandomWord();
                     this.game = new Hangman(word);
