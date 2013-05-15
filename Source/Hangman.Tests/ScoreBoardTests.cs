@@ -58,4 +58,19 @@ public class ScoreBoardTest
         "5. Ivan ---> 5 mistake(s)!\n", result); 
     }
 
+    [TestMethod]
+    public void TestResetMethod()
+    {
+        ScoreBoard scoreBoard = new ScoreBoard();
+        scoreBoard.AddScore("Pesho", 2);
+        scoreBoard.AddScore("Pesho", 0);
+        scoreBoard.AddScore("Asya", 1);
+        scoreBoard.AddScore("Gergana", 0);
+        scoreBoard.AddScore("Ivan", 5);
+        scoreBoard.Reset();
+        bool result = scoreBoard.IsEmpty;
+        Assert.AreEqual(result, true);
+    }
+
+
 }

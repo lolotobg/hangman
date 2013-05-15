@@ -54,9 +54,10 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="ScoreBoardTest.cs" />
+    <Compile Include="ScoreBoardTests.cs" />
     <Compile Include="HangmanTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ScoreEntryTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Hangman\Hangman.csproj">
