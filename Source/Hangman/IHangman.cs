@@ -1,6 +1,6 @@
 ﻿namespace HangmanGame
 {
-    interface IHangman
+    public interface IHangman
     {
         int Mistakes { get; }
 

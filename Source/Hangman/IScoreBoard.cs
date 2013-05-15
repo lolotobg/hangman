@@ -1,6 +1,6 @@
 ﻿namespace HangmanGame
 {
-    interface IScoreBoard
+    public interface IScoreBoard
     {
         void AddScore(string name, int mistakesCount);
 
