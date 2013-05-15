@@ -6,7 +6,7 @@ namespace HangmanGame
 {
     public class ScoreBoard : IScoreBoard
     {
-        public const int MaxScoresCount = 5;
+        public const int NormalScoresToStore = 5;
         private readonly List<ScoreEntry> highScores;
 
         public ScoreBoard()
@@ -50,39 +50,34 @@ namespace HangmanGame
 
         public void AddScore(string name, int mistakesCount)
         {
-            ScoreEntry newScore = new ScoreEntry(name, mistakesCount);
+            bool scoreShouldBeAdded = CheckScoreIsHighscore(mistakesCount);
 
-            if (highScores.Count < 5)
+            if (scoreShouldBeAdded)
             {
-                highScores.Add(newScore);
-                highScores.Sort();
-            }
-            else
-            {
-                for (int i = 0; i < highScores.Count; i++)
+                ScoreEntry newScore = new ScoreEntry(name, mistakesCount);
+
+                if (mistakesCount == 0)
                 {
-                    if (newScore.MistakesCount < highScores[i].MistakesCount)
+                    highScores.Add(newScore);
+                    highScores.Sort();
+                    return;
+                }
+
+                if (this.highScores.Count < NormalScoresToStore)
+                {
+                    highScores.Add(newScore);
+                    highScores.Sort();
+                }
+                else
+                {
+                    if (highScores.Count > 0)
                     {
                         highScores.RemoveAt(highScores.Count - 1);
                         highScores.Add(newScore);
                         highScores.Sort();
-                        break;
                     }
                 }
             }
-        }
-
-        public int GetWorstTopScore()
-        {
-            int worstTopScore = int.MaxValue;
-            if (highScores.Count > 0)
-            {
-                if (highScores[highScores.Count - 1] != null)
-                {
-                    worstTopScore = highScores[highScores.Count - 1].MistakesCount;
-                }
-            }
-            return worstTopScore;
         }
 
         public bool CheckScoreIsHighscore(int score)
@@ -97,7 +92,7 @@ namespace HangmanGame
                 return true;
             }
 
-            if (this.highScores.Count < MaxScoresCount)
+            if (this.highScores.Count < NormalScoresToStore)
             {
                 return true;
             }

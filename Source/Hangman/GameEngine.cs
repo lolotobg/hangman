@@ -11,6 +11,8 @@ namespace HangmanGame
         private readonly string[] words = { "computer", "programmer", "software", "debugger", "compiler", 
                                           "developer", "algorithm", "array", "method", "variable" };
 
+        //private static readonly string[] words = { "test1" };
+
         private string GetRandomWord()
         {
             int choice = this.randomGenerator.Next(words.Length);
@@ -28,8 +30,10 @@ namespace HangmanGame
 
         public string CheckScoreHasMadeScoreBoard(int mistakes)
         {
+            bool scoreIsHighScore = scoreBoard.CheckScoreIsHighscore(game.Mistakes);
             string resultOutputString = null;
-            if (this.scoreBoard.GetWorstTopScore() <= mistakes)
+
+            if (!scoreIsHighScore)
             {
                 resultOutputString = string.Format("You won with {0} mistake(s) but you score did not enter in the scoreboard",
                     mistakes);
@@ -39,8 +43,9 @@ namespace HangmanGame
                 Console.Write("Please enter your name for the top scoreboard: ");
                 string name = Console.ReadLine();
                 this.scoreBoard.AddScore(name, mistakes);
-                resultOutputString = this.scoreBoard.ToString();
             }
+
+            resultOutputString += "\n" + this.scoreBoard.ToString();
             return resultOutputString;
         }
 
