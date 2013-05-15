@@ -5,7 +5,7 @@ using System.Text;
 
 namespace HangmanGame
 {
-    class GameHouser
+    class GameRunner
     {
         static void Main()
         {

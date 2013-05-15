@@ -42,7 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GameHouser.cs" />
+    <Compile Include="GameRunner.cs" />
     <Compile Include="Hangman.cs" />
     <Compile Include="GameEngine.cs" />
     <Compile Include="IHangman.cs" />
