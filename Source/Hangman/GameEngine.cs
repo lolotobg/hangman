@@ -26,19 +26,19 @@ namespace HangmanGame
             this.command = null;
         }
 
-        public string CheckScoreHasMadeScoreBoard()
+        public string CheckScoreHasMadeScoreBoard(int mistakes)
         {
             string resultOutputString = null;
-            if (this.scoreBoard.GetWorstTopScore() <= this.game.Mistakes)
+            if (this.scoreBoard.GetWorstTopScore() <= mistakes)
             {
                 resultOutputString = string.Format("You won with {0} mistake(s) but you score did not enter in the scoreboard",
-                    this.game.Mistakes);
+                    mistakes);
             }
             else
             {
                 Console.Write("Please enter your name for the top scoreboard: ");
                 string name = Console.ReadLine();
-                this.scoreBoard.AddScore(name, this.game.Mistakes);
+                this.scoreBoard.AddScore(name, mistakes);
                 resultOutputString = this.scoreBoard.ToString();
             }
             return resultOutputString;
@@ -118,7 +118,7 @@ namespace HangmanGame
                     }
                     else
                     {
-                        Console.WriteLine(this.CheckScoreHasMadeScoreBoard());
+                        Console.WriteLine(this.CheckScoreHasMadeScoreBoard(this.game.Mistakes));
                     }
                     string word = this.GetRandomWord();
                     this.game = new Hangman(word);
