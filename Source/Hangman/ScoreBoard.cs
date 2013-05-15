@@ -5,11 +5,8 @@ using System.Collections.Generic;
 public class ScoreBoard: IScoreBoard
 {
     public const int MaxScoresCount = 5;
-    private readonly string[] topPlayers = new string[MaxScoresCount];
-    private readonly int[] mistakes = new int[MaxScoresCount];
-    private bool isEmpty;
-
     private readonly List<ScoreEntry> highScores = new List<ScoreEntry>();
+    private bool isEmpty;
 
     public ScoreBoard() 
     {
@@ -76,9 +73,9 @@ public class ScoreBoard: IScoreBoard
     public int GetWorstTopScore()
     {
         int worstTopScore = int.MaxValue;
-        if (topPlayers[topPlayers.Length - 1] != null) 
-        { 
-            worstTopScore = mistakes[topPlayers.Length - 1]; 
+        if (highScores[highScores.Count - 1] != null) 
+        {
+            worstTopScore = highScores[highScores.Count - 1].MistakesCount; 
         }
         return worstTopScore;
     }
