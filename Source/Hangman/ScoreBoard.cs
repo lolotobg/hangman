@@ -7,30 +7,31 @@ namespace HangmanGame
     public class ScoreBoard : IScoreBoard
     {
         public const int MaxScoresCount = 5;
-        private readonly List<ScoreEntry> highScores = new List<ScoreEntry>();
-        private bool isEmpty;
+        private readonly List<ScoreEntry> highScores;
 
         public ScoreBoard()
         {
-            for (int i = 0; i < highScores.Count; i++)
-            {
-                highScores[i].Name = null;
-                highScores[i].MistakesCount = int.MaxValue;
-            }
-            isEmpty = true;
+            this.highScores = new List<ScoreEntry>();
         }
 
         public bool IsEmpty
         {
-            get { return this.isEmpty; }
-            private set { }
+            get
+            {
+                return (this.highScores.Count == 0);
+            }
+
+            private set
+            {
+                throw new NotImplementedException("IsEmpty setter is no implemented!");
+            }
         }
 
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
 
-            if (isEmpty)
+            if (IsEmpty)
             {
                 sb.Append("Scoreboard is empty.\n");
             }
@@ -55,7 +56,6 @@ namespace HangmanGame
             {
                 highScores.Add(newScore);
                 highScores.Sort();
-                isEmpty = false;
             }
             else
             {
@@ -85,10 +85,36 @@ namespace HangmanGame
             return worstTopScore;
         }
 
+        public bool CheckScoreIsHighscore(int score)
+        {
+            if (score < 0)
+            {
+                throw new ArgumentOutOfRangeException("score", "The score cannot be negative!");
+            }
+
+            if (score == 0)
+            {
+                return true;
+            }
+
+            if (this.highScores.Count < MaxScoresCount)
+            {
+                return true;
+            }
+            else
+            {
+                if (highScores.Count > 0)
+                {
+                    return (score < highScores[highScores.Count - 1].MistakesCount);
+                }
+            }
+
+            return false;
+        }
+
         public void Reset()
         {
             highScores.Clear();
-            isEmpty = true;
         }
     }
 }
