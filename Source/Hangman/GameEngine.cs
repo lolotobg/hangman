@@ -4,14 +4,24 @@ namespace HangmanGame
 {
     class GameEngine
     {
-        static ScoreBoard scoreBoard;
-        static IHangman game;
-        static string command;
+        private static ScoreBoard scoreBoard;
+        private static IHangman game;
+        private static string command;
+        private static readonly Random randomGenerator = new Random();
+        private static readonly string[] words = { "computer", "programmer", "software", "debugger", "compiler", 
+                                          "developer", "algorithm", "array", "method", "variable" };
+
+        private static string GetRandomWord()
+        {
+            int choice = randomGenerator.Next(words.Length);
+            return words[choice];
+        }
 
         static void Initialize()
         {
             scoreBoard = new ScoreBoard();
-            game = new Hangman();
+            string word = GetRandomWord();
+            game = new Hangman(word);
             Console.WriteLine("Welcome to “Hangman” game. Please try to guess my secret word.");
             command = null;
         }
@@ -51,7 +61,8 @@ namespace HangmanGame
                     {
                         scoreBoard.Reset();
                         Console.WriteLine("\nWelcome to “Hangman” game. Please try to guess my secret word.");
-                        game = new Hangman();
+                        string word = GetRandomWord();
+                        game = new Hangman(word);
                     }
                     break;
                 case "exit":
@@ -116,7 +127,8 @@ namespace HangmanGame
                     {
                         CheckScoreHasMadeScoreBoard();
                     }
-                    game = new Hangman();
+                    string word = GetRandomWord();
+                    game = new Hangman(word);
                 }
                 else
                 {

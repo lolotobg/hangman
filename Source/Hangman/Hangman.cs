@@ -9,13 +9,38 @@ namespace HangmanGame
         private char[] guessedLetters;
         private int mistakes;
         private bool helpUsed;
-        private readonly Random randomGenerator = new Random();
-        private readonly string[] words = { "computer", "programmer", "software", "debugger", "compiler", 
-                                          "developer", "algorithm", "array", "method", "variable" };
 
-        public Hangman()
+        private string Word
         {
-            Initialize();
+            set
+            {
+                if(String.IsNullOrWhiteSpace(value))
+                {
+                    throw new ArgumentOutOfRangeException("word", "Word cannot be null, empty or whitespace only!");
+                }
+
+                if (value.Length < 5)
+                {
+                    throw new ArgumentOutOfRangeException("word", "Word cannot shorter than 5 symbols!");
+                }
+
+                this.wordToGuess = value;
+            }
+        }
+
+        public Hangman(string word)
+        {
+            this.Word = word;
+
+            this.guessedLetters = new char[wordToGuess.Length];
+
+            for (int i = 0; i < this.wordToGuess.Length; i++)
+            {
+                this.guessedLetters[i] = '_';
+            }
+
+            this.mistakes = 0;
+            this.helpUsed = false;
         }
 
         public int Mistakes
@@ -94,32 +119,6 @@ namespace HangmanGame
             }
 
             return word.ToString();
-        }
-
-        private void Initialize()
-        {
-            this.wordToGuess = GetRandomWord();
-            this.guessedLetters = new char[wordToGuess.Length];
-
-            for (int i = 0; i < this.wordToGuess.Length; i++)
-            {
-                this.guessedLetters[i] = '_';
-            }
-
-            this.mistakes = 0;
-            this.helpUsed = false;
-        }
-
-        private string GetRandomWord()
-        {
-            int choice = randomGenerator.Next(words.Length);
-
-            return words[choice];
-        }
-
-        public void Reset()
-        {
-            Initialize();
         }
     }
 }

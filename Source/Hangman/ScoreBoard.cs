@@ -75,9 +75,12 @@ namespace HangmanGame
         public int GetWorstTopScore()
         {
             int worstTopScore = int.MaxValue;
-            if (highScores[highScores.Count - 1] != null)
+            if (highScores.Count > 0)
             {
-                worstTopScore = highScores[highScores.Count - 1].MistakesCount;
+                if (highScores[highScores.Count - 1] != null)
+                {
+                    worstTopScore = highScores[highScores.Count - 1].MistakesCount;
+                }
             }
             return worstTopScore;
         }

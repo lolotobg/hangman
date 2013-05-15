@@ -71,6 +71,4 @@ public class ScoreBoardTest
         bool result = scoreBoard.IsEmpty;
         Assert.AreEqual(result, true);
     }
-
-
 }

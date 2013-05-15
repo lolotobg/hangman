@@ -9,14 +9,8 @@ public class HangmanTests
     [TestMethod]
     public void TestFourRevealLetterCommands()
     {
-        Random fixedGenerator = new Random(5);
-        Hangman game = new Hangman();
+        Hangman game = new Hangman("debugger");
 
-        Type type = typeof(Hangman);
-        var fieldValue = type.GetField("randomGenerator", BindingFlags.Instance | BindingFlags.NonPublic);
-        fieldValue.SetValue(game, fixedGenerator);
-
-        game.Reset();
         game.RevealLetter();
         game.RevealLetter();
         game.RevealLetter();
@@ -30,14 +24,8 @@ public class HangmanTests
     [TestMethod]
     public void TestRevealLetterCommandAfterSuccessiveLetterGuess()
     {
-        Random fixedGenerator = new Random(5);
-        Hangman game = new Hangman();
+        Hangman game = new Hangman("debugger");
 
-        Type type = typeof(Hangman);
-        var fieldValue = type.GetField("randomGenerator", BindingFlags.Instance | BindingFlags.NonPublic);
-        fieldValue.SetValue(game, fixedGenerator);
-
-        game.Reset();
         game.GuessLetter('d');
         game.RevealLetter();
 
@@ -50,14 +38,8 @@ public class HangmanTests
     [TestMethod]
     public void TestGuessLetterCommandExistingLetter()
     {
-        Random fixedGenerator = new Random(5);
-        Hangman game = new Hangman();
+        Hangman game = new Hangman("debugger");
 
-        Type type = typeof(Hangman);
-        var fieldValue = type.GetField("randomGenerator", BindingFlags.Instance | BindingFlags.NonPublic);
-        fieldValue.SetValue(game, fixedGenerator);
-
-        game.Reset();
         int guessedLetters = game.GuessLetter('e');
         string actual = game.GetCurrentStateOfWord();
         string expected = "_ e _ _ _ _ e _ ";
@@ -69,14 +51,8 @@ public class HangmanTests
     [TestMethod]
     public void TestGuessLetterCommandNonExistingLetter()
     {
-        Random fixedGenerator = new Random(5);
-        Hangman game = new Hangman();
+        Hangman game = new Hangman("debugger");
 
-        Type type = typeof(Hangman);
-        var fieldValue = type.GetField("randomGenerator", BindingFlags.Instance | BindingFlags.NonPublic);
-        fieldValue.SetValue(game, fixedGenerator);
-
-        game.Reset();
         int guessedLetters = game.GuessLetter('a');
         int misstakes = game.Mistakes;
         string actual = game.GetCurrentStateOfWord();
@@ -90,14 +66,8 @@ public class HangmanTests
     [TestMethod]
     public void TestGuessAllLetters()
     {
-        Random fixedGenerator = new Random(5);
-        Hangman game = new Hangman();
+        Hangman game = new Hangman("debugger");
 
-        Type type = typeof(Hangman);
-        var fieldValue = type.GetField("randomGenerator", BindingFlags.Instance | BindingFlags.NonPublic);
-        fieldValue.SetValue(game, fixedGenerator);
-
-        game.Reset();
         game.GuessLetter('d');
         game.GuessLetter('e');
         game.GuessLetter('b');
@@ -116,14 +86,8 @@ public class HangmanTests
     [TestMethod]
     public void TestIsOverBeforeGameOver()
     {
-        Random fixedGenerator = new Random(5);
-        Hangman game = new Hangman();
+        Hangman game = new Hangman("debugger");
 
-        Type type = typeof(Hangman);
-        var fieldValue = type.GetField("randomGenerator", BindingFlags.Instance | BindingFlags.NonPublic);
-        fieldValue.SetValue(game, fixedGenerator);
-
-        game.Reset();
         game.GuessLetter('d');
         game.GuessLetter('e');
         game.GuessLetter('b');
@@ -136,7 +100,7 @@ public class HangmanTests
     [TestMethod]
     public void TestHelpUsedTrue()
     {
-        Hangman game = new Hangman();
+        Hangman game = new Hangman("debugger");
 
         game.GuessLetter('f');
         game.RevealLetter();
@@ -149,7 +113,7 @@ public class HangmanTests
     [TestMethod]
     public void TestHelpUsedFalse()
     {
-        Hangman game = new Hangman();
+        Hangman game = new Hangman("debugger");
 
         game.GuessLetter('f');
 
