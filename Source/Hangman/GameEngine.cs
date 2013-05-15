@@ -2,7 +2,7 @@
 
 namespace HangmanGame
 {
-    class GameSession
+    class GameEngine
     {
         static ScoreBoard scoreBoard;
         static IHangman game;
