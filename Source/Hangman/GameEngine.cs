@@ -13,52 +13,52 @@ namespace HangmanGame
 
         private string GetRandomWord()
         {
-            int choice = randomGenerator.Next(words.Length);
+            int choice = this.randomGenerator.Next(words.Length);
             return words[choice];
         }
 
         public GameEngine()
         {
-            scoreBoard = new ScoreBoard();
+            this.scoreBoard = new ScoreBoard();
             string word = this.GetRandomWord();
-            game = new Hangman(word);
+            this.game = new Hangman(word);
             Console.WriteLine("Welcome to “Hangman” game. Please try to guess my secret word.");
-            command = null;
+            this.command = null;
         }
 
         public void CheckScoreHasMadeScoreBoard()
         {
-            if (scoreBoard.GetWorstTopScore() <= game.Mistakes)
+            if (this.scoreBoard.GetWorstTopScore() <= this.game.Mistakes)
             {
                 Console.WriteLine("You won with {0} mistake(s) but you score did not enter in the scoreboard",
-                    game.Mistakes);
+                    this.game.Mistakes);
             }
             else
             {
                 Console.Write("Please enter your name for the top scoreboard: ");
                 string name = Console.ReadLine();
-                scoreBoard.AddScore(name, game.Mistakes);
-                Console.WriteLine(scoreBoard.ToString());
+                this.scoreBoard.AddScore(name, this.game.Mistakes);
+                Console.WriteLine(this.scoreBoard.ToString());
             }
         }
 
-        public string ExecuteCommand(string command, ScoreBoard scoreBoard, IHangman game)
+        public string ExecuteCommand(string command)
         {
             string resultStringOfExecution = "Incorrect guess or command!";
             switch (command)
             {
                 case "top":
-                    resultStringOfExecution = scoreBoard.ToString();
+                    resultStringOfExecution = this.scoreBoard.ToString();
                     break;
                 case "help":
-                    char revealedLetter = game.RevealLetter();
+                    char revealedLetter = this.game.RevealLetter();
                     resultStringOfExecution = string.Format("OK, I reveal for you the next letter '{0}'.", revealedLetter);
                     break;
                 case "restart":
-                    scoreBoard.Reset();
+                    this.scoreBoard.Reset();
                     resultStringOfExecution = "\nWelcome to “Hangman” game. Please try to guess my secret word.";
-                    string word = GetRandomWord();
-                    game = new Hangman(word);
+                    string word = this.GetRandomWord();
+                    this.game = new Hangman(word);
                     break;
                 case "exit":
                     resultStringOfExecution = "Good bye!";
@@ -69,7 +69,7 @@ namespace HangmanGame
 
         public void HandleUserGuessInput(char guess)
         {
-            int occuranses = game.GuessLetter(guess);
+            int occuranses = this.game.GuessLetter(guess);
             //TODO: if input is not in english must handle with a differrent message than the ones bellow
             if (occuranses == 0)
             {
@@ -84,15 +84,15 @@ namespace HangmanGame
         public void HandleInput()
         {
             Console.Write("Enter your guess: ");
-            command = Console.ReadLine();
-            command.ToLower();
-            if (command.Length == 1)
+            this.command = Console.ReadLine();
+            this.command.ToLower();
+            if (this.command.Length == 1)
             {
                 this.HandleUserGuessInput(command[0]);
             }
             else
             {
-                Console.WriteLine(this.ExecuteCommand(command, scoreBoard, game));
+                Console.WriteLine(this.ExecuteCommand(command));
             }
         }
 
@@ -102,28 +102,28 @@ namespace HangmanGame
             {
                 Console.WriteLine();
                 Console.Write("The secret word is: ");
-                string currentState = game.GetCurrentStateOfWord();
+                string currentState = this.game.GetCurrentStateOfWord();
                 Console.WriteLine(currentState);
                 Console.WriteLine();
-                if (game.IsOver())
+                if (this.game.IsOver())
                 {
-                    if (game.HelpUsed)
+                    if (this.game.HelpUsed)
                     {
                         Console.WriteLine("You won with {0} mistake(s) but you have cheated." +
-                            " You are not allowed to enter into the scoreboard.", game.Mistakes);
+                            " You are not allowed to enter into the scoreboard.", this.game.Mistakes);
                     }
                     else
                     {
-                        CheckScoreHasMadeScoreBoard();
+                        this.CheckScoreHasMadeScoreBoard();
                     }
-                    string word = GetRandomWord();
-                    game = new Hangman(word);
+                    string word = this.GetRandomWord();
+                    this.game = new Hangman(word);
                 }
                 else
                 {
-                    HandleInput();
+                    this.HandleInput();
                 }
-            } while (command != "exit");
+            } while (this.command != "exit");
         }
     }
 }
