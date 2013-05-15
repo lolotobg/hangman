@@ -1,66 +1,69 @@
 ﻿using System;
 using System.Linq;
 
-public class ScoreEntry: IComparable<ScoreEntry>
+namespace HangmanGame
 {
-    private string name;
-    private int mistakesCount;
-
-    public ScoreEntry()
+    public class ScoreEntry : IComparable<ScoreEntry>
     {
-    }
+        private string name;
+        private int mistakesCount;
 
-    public ScoreEntry(string name, int mistakesCount)
-    {
-        this.Name = name;
-        this.MistakesCount = mistakesCount;
-    }
-
-    public string Name
-    {
-        get
+        public ScoreEntry()
         {
-            return this.name;
         }
 
-        set
+        public ScoreEntry(string name, int mistakesCount)
         {
-            if (value == null || value == string.Empty)
+            this.Name = name;
+            this.MistakesCount = mistakesCount;
+        }
+
+        public string Name
+        {
+            get
             {
-                throw new ArgumentNullException("Name cannot be null or empty.", "name");
+                return this.name;
             }
 
-            this.name = value;
-        }
-    }
-
-    public int MistakesCount
-    {
-        get
-        {
-            return this.mistakesCount;
-        }
-
-        set
-        {
-            if (value < 0)
+            set
             {
-                throw new ArgumentException("The mistakes cannot be less than zero.", "mistakesCount");
+                if (value == null || value == string.Empty)
+                {
+                    throw new ArgumentNullException("Name cannot be null or empty.", "name");
+                }
+
+                this.name = value;
+            }
+        }
+
+        public int MistakesCount
+        {
+            get
+            {
+                return this.mistakesCount;
             }
 
-            this.mistakesCount = value;
-        }
-    }
+            set
+            {
+                if (value < 0)
+                {
+                    throw new ArgumentException("The mistakes cannot be less than zero.", "mistakesCount");
+                }
 
-    public int CompareTo(ScoreEntry other)
-    {
-        // Alphabetic sort if the mistakes are equal
-        if (this.MistakesCount == other.MistakesCount)
+                this.mistakesCount = value;
+            }
+        }
+
+        public int CompareTo(ScoreEntry other)
         {
-            return this.Name.CompareTo(other.Name);
+            // Alphabetic sort if the mistakes are equal
+            if (this.MistakesCount == other.MistakesCount)
+            {
+                return this.Name.CompareTo(other.Name);
+            }
+            // Sort
+            return this.MistakesCount.CompareTo(other.MistakesCount);
         }
-        // Sort
-        return this.MistakesCount.CompareTo(other.MistakesCount);
-    }
 
+    }
 }

@@ -1,8 +1,11 @@
-﻿interface IScoreBoard
+﻿namespace HangmanGame
 {
-    void AddScore(string name, int mistakesCount);
+    interface IScoreBoard
+    {
+        void AddScore(string name, int mistakesCount);
 
-    void Reset();
+        void Reset();
 
-    string ToString();
+        string ToString();
+    }
 }

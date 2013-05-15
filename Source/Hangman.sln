@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hangman.Tests", "Hangman.Tests\Hangman.Tests.csproj", "{59315CE5-D50F-480F-82AA-7B37EA32BBE9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hangman", "Hangman\Hangman.csproj", "{DB425E55-A0C2-4BE1-9BEA-91E247551996}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HangmanGame", "Hangman\HangmanGame.csproj", "{DB425E55-A0C2-4BE1-9BEA-91E247551996}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,14 +1,17 @@
-﻿interface IHangman
+﻿namespace HangmanGame
 {
-    int Mistakes { get; }
+    interface IHangman
+    {
+        int Mistakes { get; }
 
-    bool HelpUsed { get; }
+        bool HelpUsed { get; }
 
-    bool IsOver();
+        bool IsOver();
 
-    char RevealLetter();
-     
-    int GuessLetter(char letter);
+        char RevealLetter();
 
-    string GetCurrentStateOfWord();
+        int GuessLetter(char letter);
+
+        string GetCurrentStateOfWord();
+    }
 }

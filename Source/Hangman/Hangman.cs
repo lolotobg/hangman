@@ -1,122 +1,125 @@
 ﻿using System;
 using System.Text;
 
-public class Hangman : IHangman
+namespace HangmanGame
 {
-    private string wordToGuess;
-    private char[] guessedLetters;
-    private int mistakes;
-    private bool helpUsed;
-    private readonly Random randomGenerator = new Random();
-    private readonly string[] words = { "computer", "programmer", "software", "debugger", "compiler", 
+    public class Hangman : IHangman
+    {
+        private string wordToGuess;
+        private char[] guessedLetters;
+        private int mistakes;
+        private bool helpUsed;
+        private readonly Random randomGenerator = new Random();
+        private readonly string[] words = { "computer", "programmer", "software", "debugger", "compiler", 
                                           "developer", "algorithm", "array", "method", "variable" };
 
-    public Hangman() 
-    {
-        Initialize();
-    }
-
-    public int Mistakes
-    {
-        get
+        public Hangman()
         {
-            return this.mistakes;
+            Initialize();
         }
-    }
 
-    public bool HelpUsed 
-    {
-        get
+        public int Mistakes
         {
-            return this.helpUsed;
-        }
-    }
-
-    public bool IsOver()
-    {
-        for (int i = 0; i < guessedLetters.Length; i++)
-        {
-            if (guessedLetters[i] == '_')
+            get
             {
-                return false;
+                return this.mistakes;
             }
         }
 
-        return true;
-    }
-
-    public char RevealLetter() 
-    {
-        char letterToReveal = char.MinValue;
-        for (int i = 0; i < this.guessedLetters.Length; i++)
+        public bool HelpUsed
         {
-            if (this.guessedLetters[i] == '_') 
+            get
             {
-                this.guessedLetters[i] = this.wordToGuess[i];
-                letterToReveal = this.wordToGuess[i];
-                this.helpUsed = true;
-                break;
-            }
-        }
-        return letterToReveal;
-    }
-
-    public int GuessLetter(char letter) 
-    {
-        int count = 0;
-        for (int i = 0; i < this.wordToGuess.Length; i++)
-        {
-            if (this.wordToGuess[i] == letter) 
-            {
-                this.guessedLetters[i] = letter;
-                count++;
+                return this.helpUsed;
             }
         }
 
-        if (count == 0)
+        public bool IsOver()
         {
-            this.mistakes++;
+            for (int i = 0; i < guessedLetters.Length; i++)
+            {
+                if (guessedLetters[i] == '_')
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
 
-        return count;
-    }
-
-    public string GetCurrentStateOfWord() 
-    {
-        StringBuilder word = new StringBuilder();
-        
-        for (int i = 0; i < this.guessedLetters.Length; i++)
+        public char RevealLetter()
         {
-            word.Append(this.guessedLetters[i]);
-            word.Append(' ');
+            char letterToReveal = char.MinValue;
+            for (int i = 0; i < this.guessedLetters.Length; i++)
+            {
+                if (this.guessedLetters[i] == '_')
+                {
+                    this.guessedLetters[i] = this.wordToGuess[i];
+                    letterToReveal = this.wordToGuess[i];
+                    this.helpUsed = true;
+                    break;
+                }
+            }
+            return letterToReveal;
         }
 
-        return word.ToString();    
-    }
-
-    private void Initialize()
-    {
-        this.wordToGuess = GetRandomWord();
-        this.guessedLetters = new char[wordToGuess.Length];
-
-        for (int i = 0; i < this.wordToGuess.Length; i++)
+        public int GuessLetter(char letter)
         {
-            this.guessedLetters[i] = '_';
+            int count = 0;
+            for (int i = 0; i < this.wordToGuess.Length; i++)
+            {
+                if (this.wordToGuess[i] == letter)
+                {
+                    this.guessedLetters[i] = letter;
+                    count++;
+                }
+            }
+
+            if (count == 0)
+            {
+                this.mistakes++;
+            }
+
+            return count;
         }
 
-        this.mistakes = 0;
-        this.helpUsed = false;
-    }
+        public string GetCurrentStateOfWord()
+        {
+            StringBuilder word = new StringBuilder();
 
-    private string GetRandomWord()
-    {
-        int choice = randomGenerator.Next(words.Length);
+            for (int i = 0; i < this.guessedLetters.Length; i++)
+            {
+                word.Append(this.guessedLetters[i]);
+                word.Append(' ');
+            }
 
-        return words[choice];
-    }
+            return word.ToString();
+        }
 
-    public void Reset()
-    {
-        Initialize();
+        private void Initialize()
+        {
+            this.wordToGuess = GetRandomWord();
+            this.guessedLetters = new char[wordToGuess.Length];
+
+            for (int i = 0; i < this.wordToGuess.Length; i++)
+            {
+                this.guessedLetters[i] = '_';
+            }
+
+            this.mistakes = 0;
+            this.helpUsed = false;
+        }
+
+        private string GetRandomWord()
+        {
+            int choice = randomGenerator.Next(words.Length);
+
+            return words[choice];
+        }
+
+        public void Reset()
+        {
+            Initialize();
+        }
     }
 }
