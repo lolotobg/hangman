@@ -88,11 +88,11 @@ namespace HangmanGame
             command.ToLower();
             if (command.Length == 1)
             {
-                HandleUserGuessInput(command[0]);
+                this.HandleUserGuessInput(command[0]);
             }
             else
             {
-                this.ExecuteCommand(command, scoreBoard, game);
+                Console.WriteLine(this.ExecuteCommand(command, scoreBoard, game));
             }
         }
 
