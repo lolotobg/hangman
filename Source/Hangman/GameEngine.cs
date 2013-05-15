@@ -11,8 +11,6 @@ namespace HangmanGame
         private readonly string[] words = { "computer", "programmer", "software", "debugger", "compiler", 
                                           "developer", "algorithm", "array", "method", "variable" };
 
-        //private static readonly string[] words = { "test1" };
-
         private string GetRandomWord()
         {
             int choice = this.randomGenerator.Next(words.Length);
@@ -24,6 +22,8 @@ namespace HangmanGame
             this.scoreBoard = new ScoreBoard();
             string word = this.GetRandomWord();
             this.game = new Hangman(word);
+            Console.WriteLine("Commands: top, help, restart, exit.");
+            // commands should be global constants
             Console.WriteLine("Welcome to “Hangman” game. Please try to guess my secret word.");
             this.command = null;
         }

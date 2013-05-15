@@ -6,7 +6,7 @@ namespace HangmanGame
     public class Hangman : IHangman
     {
         private string wordToGuess;
-        private char[] guessedLetters;
+        private readonly char[] guessedLetters;
         private int mistakes;
         private bool helpUsed;
 
@@ -74,18 +74,39 @@ namespace HangmanGame
 
         public char RevealLetter()
         {
-            char letterToReveal = char.MinValue;
+            bool gameIsOver = IsOver();
+            if (gameIsOver)
+            {
+                string error = "The game is over - there are no more letter to reveal!";
+                string hint = "Check if game is over with IsOver() method before calling RevealLeter()";
+                throw new ApplicationException(error + hint);
+            }
+
+            char letterToReveal = GetLetterToReveal();
+            this.helpUsed = true;
+
+            for (int i = 0; i < this.guessedLetters.Length; i++)
+            {
+                if (this.wordToGuess[i] == letterToReveal)
+                {
+                    this.guessedLetters[i] = letterToReveal;
+                }
+            }
+
+            return letterToReveal;
+        }
+
+        private char GetLetterToReveal()
+        {
             for (int i = 0; i < this.guessedLetters.Length; i++)
             {
                 if (this.guessedLetters[i] == '_')
                 {
-                    this.guessedLetters[i] = this.wordToGuess[i];
-                    letterToReveal = this.wordToGuess[i];
-                    this.helpUsed = true;
-                    break;
+                    return (this.wordToGuess[i]);
                 }
             }
-            return letterToReveal;
+
+            throw new ApplicationException("No letters to reveal");
         }
 
         public int GuessLetter(char letter)

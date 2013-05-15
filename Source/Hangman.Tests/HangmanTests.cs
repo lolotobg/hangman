@@ -16,7 +16,7 @@ public class HangmanTests
         game.RevealLetter();
         game.RevealLetter();
         string actual = game.GetCurrentStateOfWord();
-        string expected = "d e b u _ _ _ _ ";
+        string expected = "d e b u _ _ e _ ";
 
         Assert.AreEqual(expected, actual);
     }
@@ -30,7 +30,7 @@ public class HangmanTests
         game.RevealLetter();
 
         string actual = game.GetCurrentStateOfWord();
-        string expected = "d e _ _ _ _ _ _ ";
+        string expected = "d e _ _ _ _ e _ ";
 
         Assert.AreEqual(expected, actual);
     }
