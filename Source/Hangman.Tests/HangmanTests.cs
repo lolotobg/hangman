@@ -22,6 +22,30 @@ public class HangmanTests
     }
 
     [TestMethod]
+    public void TestRevealLetterOneOccurance()
+    {
+        Hangman game = new Hangman("methanol");
+
+        game.RevealLetter();
+        string actual = game.GetCurrentStateOfWord();
+        string expected = "m _ _ _ _ _ _ _ ";
+
+        Assert.AreEqual(expected, actual);
+    }
+
+    [TestMethod]
+    public void TestRevealLetterMoreOccurances()
+    {
+        Hangman game = new Hangman("memanol");
+
+        game.RevealLetter();
+        string actual = game.GetCurrentStateOfWord();
+        string expected = "m _ m _ _ _ _ ";
+
+        Assert.AreEqual(expected, actual);
+    }
+
+    [TestMethod]
     public void TestRevealLetterCommandAfterSuccessiveLetterGuess()
     {
         Hangman game = new Hangman("debugger");
@@ -120,5 +144,45 @@ public class HangmanTests
         bool helpUsed = game.HelpUsed;
 
         Assert.IsFalse(helpUsed);
+    }
+
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentOutOfRangeException))]
+    public void TestNullWord()
+    {
+        Hangman game = new Hangman(null);
+    }
+
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentOutOfRangeException))]
+    public void TestEmptyWord()
+    {
+        Hangman game = new Hangman(String.Empty);
+    }
+
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentOutOfRangeException))]
+    public void TestWhiteSpaceWord()
+    {
+        Hangman game = new Hangman("          ");
+    }
+
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentOutOfRangeException))]
+    public void TestWordLengthLessThanFiveSymbols()
+    {
+        Hangman game = new Hangman("rock");
+    }
+
+    [TestMethod]
+    [ExpectedException(typeof(ApplicationException))]
+    public void TestRevealLetterAfterGameIsOver()
+    {
+        Hangman game = new Hangman("aabbccdd");
+        game.RevealLetter();
+        game.RevealLetter();
+        game.RevealLetter();
+        game.RevealLetter();
+        game.RevealLetter();
     }
 }
