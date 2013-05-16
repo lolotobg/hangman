@@ -36,6 +36,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="Telerik.JustMock, Version=2013.1.507.0, Culture=neutral, PublicKeyToken=721b6c5bc0326b3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Telerik.JustMock.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -61,6 +65,9 @@
       <Project>{db425e55-a0c2-4be1-9bea-91e247551996}</Project>
       <Name>HangmanGame</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="lib\Telerik.JustMock.dll" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

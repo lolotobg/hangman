@@ -7,9 +7,8 @@ namespace HangmanGame
         private IScoreBoard scoreBoard;
         private IHangman game;
         private string command;
-        private readonly Random randomGenerator = new Random();
-        private readonly string[] words = { "computer", "programmer", "software", "debugger", "compiler", 
-                                          "developer", "algorithm", "array", "method", "variable" };
+        private readonly Random randomGenerator;
+        private readonly string[] words;
 
         private string GetRandomWord()
         {
@@ -19,6 +18,9 @@ namespace HangmanGame
 
         public GameEngine()
         {
+            this.randomGenerator = new Random();
+            this.words = new string[]{ "computer", "programmer", "software", "debugger", "compiler", 
+                                          "developer", "algorithm", "array", "method", "variable" };
             this.scoreBoard = new ScoreBoard();
             string word = this.GetRandomWord();
             this.game = new Hangman(word);
@@ -30,7 +32,7 @@ namespace HangmanGame
 
         public string CheckScoreHasMadeScoreBoard(int mistakes)
         {
-            bool scoreIsHighScore = scoreBoard.CheckScoreIsHighscore(game.Mistakes);
+            bool scoreIsHighScore = scoreBoard.CheckScoreIsHighscore(mistakes);
             string resultOutputString = null;
 
             if (!scoreIsHighScore)
