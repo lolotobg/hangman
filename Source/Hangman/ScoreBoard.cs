@@ -60,7 +60,7 @@ namespace HangmanGame
             }
         }
 
-        public bool CheckScoreIsHighscore(int score)
+        public bool CheckScoreIsHighscore(int mistakes)
         {
             if (this.highScores.Count < MaxScoreEntries)
             {
@@ -68,7 +68,7 @@ namespace HangmanGame
             }
             else
             {
-                if (highScores[highScores.Count - 1].MistakesCount >= score)
+                if (mistakes < highScores[highScores.Count - 1].MistakesCount)
                 {
                     return true;
                 }

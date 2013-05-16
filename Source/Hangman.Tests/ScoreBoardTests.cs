@@ -7,14 +7,14 @@ using HangmanGame;
 public class ScoreBoardTest
 {
     [TestMethod]
-    public void TestEmptyScoreBoard()
+    public void TestIsEmpty()
     {
         ScoreBoard scoreBoard = new ScoreBoard();
         Assert.IsTrue(scoreBoard.IsEmpty, "true");
     }
 
-    [TestMethod] 
-    public void TestEmptyScoreBoardToString()
+    [TestMethod]
+    public void TestToStringWithEmptyScoreBoard()
     {
         ScoreBoard scoreBoard = new ScoreBoard();
         var result = scoreBoard.ToString();
@@ -22,7 +22,7 @@ public class ScoreBoardTest
     }
 
     [TestMethod]
-    public void TestScoreBoardWithOneScoreToString()
+    public void TestToStringWithOneScore()
     {
         ScoreBoard scoreBoard = new ScoreBoard();
         scoreBoard.AddScore("Pesho", 2);
@@ -31,7 +31,7 @@ public class ScoreBoardTest
     }
 
     [TestMethod]
-    public void TestScoreBoardWithTwoScoresToString()
+    public void TestToStringWithTwoScores()
     {
         ScoreBoard scoreBoard = new ScoreBoard();
         scoreBoard.AddScore("Pesho", 2);
@@ -42,7 +42,7 @@ public class ScoreBoardTest
     }
 
     [TestMethod]
-    public void TestScoreBoardWithFiveScoresToString()
+    public void TestToStringWithFiveScores()
     {
         ScoreBoard scoreBoard = new ScoreBoard();
         scoreBoard.AddScore("Pesho", 2);
@@ -59,7 +59,7 @@ public class ScoreBoardTest
     }
 
     [TestMethod]
-    public void TestScoreBoardWithSevenScoresLastAreBetterToString()
+    public void TestAddScoreWithSevenScoresLastAreBetter()
     {
         ScoreBoard scoreBoard = new ScoreBoard();
         scoreBoard.AddScore("Pesho", 100);
@@ -80,7 +80,7 @@ public class ScoreBoardTest
     }
 
     [TestMethod]
-    public void TestScoreBoardWithSevenScoresLastAreWorseToString()
+    public void TestAddScoreWithSevenScoresLastAreWorse()
     {
         ScoreBoard scoreBoard = new ScoreBoard();
         scoreBoard.AddScore("Pesho", 100);
@@ -101,7 +101,7 @@ public class ScoreBoardTest
     }
 
     [TestMethod]
-    public void TestResetMethod()
+    public void TestReset()
     {
         ScoreBoard scoreBoard = new ScoreBoard();
         scoreBoard.AddScore("Pesho", 2);
@@ -115,6 +115,7 @@ public class ScoreBoardTest
     }
 
     [TestMethod]
+
     public void TestCheckScoreIsHighscoreWithThreeScores()
     {
         ScoreBoard scoreBoard = new ScoreBoard();
@@ -124,7 +125,7 @@ public class ScoreBoardTest
         highScores.Add(new ScoreEntry("Pesho", 1));
 
         bool result = scoreBoard.CheckScoreIsHighscore(0);
-        Assert.AreEqual(true, result);
+        Assert.IsTrue(result);
     }
 
     [TestMethod]
@@ -140,6 +141,101 @@ public class ScoreBoardTest
         highScores.Add(new ScoreEntry("Pesho", 1));
      
         bool result = scoreBoard.CheckScoreIsHighscore(0);
-        Assert.AreEqual(true, result);
+        Assert.IsTrue(result);
+    }
+
+    public void TestCheckScoreIsHighscoreWithMoreThanFiveRecordsAndCheckBetter()
+    {
+        ScoreBoard scoreBoard = new ScoreBoard();
+        scoreBoard.AddScore("Pesho", 2);
+        scoreBoard.AddScore("Pesho", 0);
+        scoreBoard.AddScore("Asya", 1);
+        scoreBoard.AddScore("Gergana", 0);
+        scoreBoard.AddScore("Ivan", 5);
+        bool isHighscore = scoreBoard.CheckScoreIsHighscore(4);
+        Assert.IsTrue(isHighscore);
+    }
+
+    [TestMethod]
+    public void TestCheckScoreIsHighscoreWithMoreThanFiveRecordsAndCheckTheSame()
+    {
+        ScoreBoard scoreBoard = new ScoreBoard();
+        scoreBoard.AddScore("Pesho", 2);
+        scoreBoard.AddScore("Pesho", 0);
+        scoreBoard.AddScore("Asya", 1);
+        scoreBoard.AddScore("Gergana", 0);
+        scoreBoard.AddScore("Ivan", 5);
+        bool isHighscore = scoreBoard.CheckScoreIsHighscore(5);
+        Assert.IsFalse(isHighscore);
+    }
+
+    [TestMethod]
+    public void TestCheckScoreIsHighscoreWithMoreThanFiveRecordsAndCheckWorse()
+    {
+        ScoreBoard scoreBoard = new ScoreBoard();
+        scoreBoard.AddScore("Pesho", 2);
+        scoreBoard.AddScore("Pesho", 0);
+        scoreBoard.AddScore("Asya", 1);
+        scoreBoard.AddScore("Gergana", 0);
+        scoreBoard.AddScore("Ivan", 5);
+        bool isHighscore = scoreBoard.CheckScoreIsHighscore(6);
+        Assert.IsFalse(isHighscore);
+    }
+
+    [TestMethod]
+    public void TestCheckScoreIsHighscoreWithLessThanFiveRecordsAndCheckBetter()
+    {
+        ScoreBoard scoreBoard = new ScoreBoard();
+        scoreBoard.AddScore("Pesho", 2);
+        scoreBoard.AddScore("Pesho", 0);
+        scoreBoard.AddScore("Ivan", 5);
+        bool isHighscore = scoreBoard.CheckScoreIsHighscore(4);
+        Assert.IsTrue(isHighscore);
+    }
+
+    [TestMethod]
+    public void TestCheckScoreIsHighscoreWithLessThanFiveRecordsAndCheckWorse()
+    {
+        ScoreBoard scoreBoard = new ScoreBoard();
+        scoreBoard.AddScore("Pesho", 2);
+        scoreBoard.AddScore("Pesho", 0);
+        scoreBoard.AddScore("Ivan", 5);
+        bool isHighscore = scoreBoard.CheckScoreIsHighscore(6);
+        Assert.IsTrue(isHighscore);
+    }
+
+    [TestMethod]
+    public void TestCheckScoreIsHighscoreWithZeroRecords()
+    {
+        ScoreBoard scoreBoard = new ScoreBoard();
+        bool isHighscore = scoreBoard.CheckScoreIsHighscore(6);
+        Assert.IsTrue(isHighscore);
+    }
+
+    [TestMethod]
+    public void TestCheckScoreIsHighscoreWithAllPerfectScores()
+    {
+        ScoreBoard scoreBoard = new ScoreBoard();
+        scoreBoard.AddScore("Pesho", 0);
+        scoreBoard.AddScore("Pesho", 0);
+        scoreBoard.AddScore("Asya", 0);
+        scoreBoard.AddScore("Gergana", 0);
+        scoreBoard.AddScore("Ivan", 0);
+        bool isHighscore = scoreBoard.CheckScoreIsHighscore(0);
+        Assert.IsTrue(isHighscore);
+    }
+
+    [TestMethod]
+    public void TestResetMethod()
+    {
+        ScoreBoard scoreBoard = new ScoreBoard();
+        scoreBoard.AddScore("Pesho", 2);
+        scoreBoard.AddScore("Pesho", 0);
+        scoreBoard.AddScore("Asya", 1);
+        scoreBoard.AddScore("Gergana", 0);
+        scoreBoard.AddScore("Ivan", 5);
+        scoreBoard.Reset();
+        bool result = scoreBoard.IsEmpty;
+        Assert.AreEqual(result, true);
     }
 }
