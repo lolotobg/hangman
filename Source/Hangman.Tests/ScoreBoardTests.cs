@@ -114,5 +114,32 @@ public class ScoreBoardTest
         Assert.AreEqual(result, true);
     }
 
-    
+    [TestMethod]
+    public void TestCheckScoreIsHighscoreWithThreeScores()
+    {
+        ScoreBoard scoreBoard = new ScoreBoard();
+        List<ScoreEntry> highScores = new List<ScoreEntry>();
+        highScores.Add(new ScoreEntry("Pesho", 2));
+        highScores.Add(new ScoreEntry("Pesho", 0));
+        highScores.Add(new ScoreEntry("Pesho", 1));
+
+        bool result = scoreBoard.CheckScoreIsHighscore(0);
+        Assert.AreEqual(true, result);
+    }
+
+    [TestMethod]
+    public void TestCheckScoreIsHighscoreWithSixHighscores()
+    {
+        ScoreBoard scoreBoard = new ScoreBoard();
+        List<ScoreEntry> highScores = new List<ScoreEntry>();
+        highScores.Add(new ScoreEntry("Pesho", 2));
+        highScores.Add(new ScoreEntry("Pesho", 0));
+        highScores.Add(new ScoreEntry("Pesho", 1));
+        highScores.Add(new ScoreEntry("Pesho", 1));
+        highScores.Add(new ScoreEntry("Pesho", 1));
+        highScores.Add(new ScoreEntry("Pesho", 1));
+     
+        bool result = scoreBoard.CheckScoreIsHighscore(0);
+        Assert.AreEqual(true, result);
+    }
 }
