@@ -6,7 +6,7 @@ namespace HangmanGame
 {
     public class ScoreBoard : IScoreBoard
     {
-        public const int NormalScoresToStore = 5;
+        public const int MaxScoreEntries = 5;
         private readonly List<ScoreEntry> highScores;
 
         public ScoreBoard()
@@ -51,55 +51,32 @@ namespace HangmanGame
             {
                 ScoreEntry newScore = new ScoreEntry(name, mistakesCount);
 
-                if (mistakesCount == 0)
+                highScores.Add(newScore);
+                highScores.Sort();
+                if (highScores.Count > MaxScoreEntries)
                 {
-                    highScores.Add(newScore);
-                    highScores.Sort();
-                    return;
-                }
-
-                if (this.highScores.Count < NormalScoresToStore)
-                {
-                    highScores.Add(newScore);
-                    highScores.Sort();
-                }
-                else
-                {
-                    if (highScores.Count > 0)
-                    {
-                        highScores.RemoveAt(highScores.Count - 1);
-                        highScores.Add(newScore);
-                        highScores.Sort();
-                    }
+                    highScores.RemoveAt(highScores.Count-1);
                 }
             }
         }
 
         public bool CheckScoreIsHighscore(int score)
         {
-            if (score < 0)
-            {
-                throw new ArgumentOutOfRangeException("score", "The score cannot be negative!");
-            }
-
-            if (score == 0)
-            {
-                return true;
-            }
-
-            if (this.highScores.Count < NormalScoresToStore)
+            if (this.highScores.Count < MaxScoreEntries)
             {
                 return true;
             }
             else
             {
-                if (highScores.Count > 0)
+                if (highScores[highScores.Count - 1].MistakesCount >= score)
                 {
-                    return (score < highScores[highScores.Count - 1].MistakesCount);
+                    return true;
+                }
+                else
+                {
+                    return false;
                 }
             }
-
-            return false;
         }
 
         public void Reset()
