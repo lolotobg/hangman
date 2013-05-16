@@ -6,7 +6,7 @@ using HangmanGame;
 using System.IO;
 
 [TestClass]
-public class SampleTests
+public class GameEngineTests
 {
     [TestMethod]
     public void CheckScoreHasMadeScoreBoardNotEnoughScores()

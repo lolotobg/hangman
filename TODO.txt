@@ -1,5 +1,5 @@
 1. Better output
-	1.1 Move the command strings as global variables
+	--1.1 Move the command strings as global variables - done
 	1.2 Present the commands to the user
 	1.3 Better formatting
 
@@ -12,4 +12,8 @@
 	In both cases present the user with appropriate message.
 
 4. Test more scenarious and improve code coverage
-	4.1 Think of how ot test GameEngie and GameRunner
+	4.1 Think of how to test GameEngine and GameRunner
+
+5. ScoreBoard to take as a single parameter for the constructor the number of records
+to keep + private setter with validation logic.
+Design decision - should perfect scores be added always?

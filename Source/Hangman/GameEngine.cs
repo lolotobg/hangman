@@ -55,7 +55,7 @@ namespace HangmanGame
             return resultOutputString;
         }
 
-        public string ExecuteCommand(string command)
+        private string ExecuteCommand(string command)
         {
             if (string.IsNullOrEmpty(command))
             {
@@ -84,7 +84,7 @@ namespace HangmanGame
             return resultStringOfExecution;
         }
 
-        public string HandleUserGuessInput(char guess)
+        private string HandleUserGuessInput(char guess)
         {
             int occuranses = this.game.GuessLetter(guess);
             string resultOutputString = null;
@@ -100,7 +100,7 @@ namespace HangmanGame
             return resultOutputString;
         }
 
-        public void HandleInput()
+        private void HandleInput()
         {
             Console.Write("Enter your guess: ");
             this.command = Console.ReadLine();
