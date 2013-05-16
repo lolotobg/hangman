@@ -4,7 +4,7 @@ namespace HangmanGame
 {
     public class GameEngine
     {
-        private ScoreBoard scoreBoard;
+        private IScoreBoard scoreBoard;
         private IHangman game;
         private string command;
         private readonly Random randomGenerator = new Random();

@@ -20,11 +20,6 @@ namespace HangmanGame
             {
                 return (this.highScores.Count == 0);
             }
-
-            private set
-            {
-                throw new NotImplementedException("IsEmpty setter is no implemented!");
-            }
         }
 
         public override string ToString()

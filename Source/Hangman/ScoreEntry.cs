@@ -8,10 +8,6 @@ namespace HangmanGame
         private string name;
         private int mistakesCount;
 
-        public ScoreEntry()
-        {
-        }
-
         public ScoreEntry(string name, int mistakesCount)
         {
             this.Name = name;
@@ -27,9 +23,9 @@ namespace HangmanGame
 
             set
             {
-                if (value == null || value == string.Empty)
+                if (string.IsNullOrWhiteSpace(value))
                 {
-                    throw new ArgumentNullException("Name cannot be null or empty.", "name");
+                    throw new ArgumentException("Name cannot be null or empty.", "name");
                 }
 
                 this.name = value;

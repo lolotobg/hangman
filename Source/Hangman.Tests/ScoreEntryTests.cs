@@ -23,5 +23,26 @@ public class ScoreEntryTests
         var result = newScoreEntry.Name.CompareTo(other.Name);
         Assert.AreEqual(-1, result);
     }
+
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentException))]
+    public void TestInvalidScoreNameWhiteSpaces()
+    {
+        ScoreEntry newScoreEntry = new ScoreEntry("    ", 2);
+    }
+
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentException))]
+    public void TestInvalidScoreNameNull()
+    {
+        ScoreEntry newScoreEntry = new ScoreEntry(null, 2);
+    }
+
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentException))]
+    public void TestInvalidScoreMistakes()
+    {
+        ScoreEntry newScoreEntry = new ScoreEntry("pesho", -1569);
+    }
 }
 
