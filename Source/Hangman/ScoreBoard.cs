@@ -53,6 +53,13 @@ namespace HangmanGame
 
                 highScores.Add(newScore);
                 highScores.Sort();
+
+                if (mistakesCount == 0)
+                {
+                    // no removal of records if all of them are perfect
+                    return;
+                }
+
                 if (highScores.Count > MaxScoreEntries)
                 {
                     highScores.RemoveAt(highScores.Count-1);
@@ -62,6 +69,13 @@ namespace HangmanGame
 
         public bool CheckScoreIsHighscore(int mistakes)
         {
+            if (mistakes == 0)
+            {
+                // all perfect records go into the scoreboard no matter the
+                // current number of records kept there
+                return true;
+            }
+
             if (this.highScores.Count < MaxScoreEntries)
             {
                 return true;
