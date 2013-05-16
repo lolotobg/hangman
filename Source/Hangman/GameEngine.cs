@@ -32,6 +32,10 @@ namespace HangmanGame
 
         public string CheckScoreHasMadeScoreBoard(int mistakes)
         {
+            if (mistakes < 0)
+            {
+                throw new ArgumentException("Mistakes parameter can't be less than zero.");
+            }
             bool scoreIsHighScore = scoreBoard.CheckScoreIsHighscore(mistakes);
             string resultOutputString = null;
 
@@ -53,6 +57,10 @@ namespace HangmanGame
 
         public string ExecuteCommand(string command)
         {
+            if (string.IsNullOrEmpty(command))
+            {
+                throw new ArgumentNullException("Command parameter can't be null or empty.");
+            }
             string resultStringOfExecution = "Incorrect guess or command!";
             switch (command)
             {
