@@ -25,7 +25,7 @@ namespace HangmanGame
             {
                 if (string.IsNullOrWhiteSpace(value))
                 {
-                    throw new ArgumentException("Name cannot be null or empty.", "name");
+                    throw new ArgumentException("Name cannot be null, empty or whitespace.", "name");
                 }
 
                 this.name = value;

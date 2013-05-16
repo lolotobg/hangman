@@ -107,7 +107,7 @@ namespace HangmanGame
             }
         }
 
-        public void GameLoop()
+        public void Run()
         {
             do
             {
