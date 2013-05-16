@@ -56,20 +56,20 @@ namespace HangmanGame
             string resultStringOfExecution = "Incorrect guess or command!";
             switch (command)
             {
-                case "top":
+                case Command.topScores:
                     resultStringOfExecution = this.scoreBoard.ToString();
                     break;
-                case "help":
+                case Command.playerHint:
                     char revealedLetter = this.game.RevealLetter();
                     resultStringOfExecution = string.Format("OK, I reveal for you the next letter '{0}'.", revealedLetter);
                     break;
-                case "restart":
+                case Command.restartGame:
                     this.scoreBoard.Reset();
                     resultStringOfExecution = "\nWelcome to “Hangman” game. Please try to guess my secret word.";
                     string word = this.GetRandomWord();
                     this.game = new Hangman(word);
                     break;
-                case "exit":
+                case Command.endGame:
                     resultStringOfExecution = "Good bye!";
                     break;
             }
