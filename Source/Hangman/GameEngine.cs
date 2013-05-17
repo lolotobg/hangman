@@ -142,7 +142,7 @@ namespace HangmanGame
                 {
                     this.HandleInput();
                 }
-            } while (this.command != "exit");
+            } while (this.command != Command.endGame);
         }
     }
 }

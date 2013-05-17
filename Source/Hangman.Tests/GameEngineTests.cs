@@ -72,4 +72,28 @@ public class GameEngineTests
         Assert.AreEqual(expectedConsoleOut, consoleOut);
         Assert.AreEqual(expected, actual);
     }
+
+    [TestMethod]
+    public void ExecuteCommandTestWithDifferentCommands()
+    {
+        GameEngine gameEngine = new GameEngine();
+        //Arrange console in
+        string input = "top\r\nrestart\r\nhelp\r\nsome random command\r\nexit\r\t";
+        string[] expectedConsoleOut = { "Scoreboard is empty.\n", "\nWelcome to “Hangman” game. Please try to guess my secret word.", "OK, I reveal for you the next letter '", "Incorrect guess or command!", "Good bye!"};
+        string consoleOut = null;
+        using(StringWriter sw = new StringWriter())
+        {
+            using (StringReader sr = new StringReader(input))
+            {
+                Console.SetOut(sw);
+                Console.SetIn(sr);
+                gameEngine.Run();
+            }
+            consoleOut = sw.ToString();
+            for (int i = 0; i < expectedConsoleOut.Length; i++)
+            {
+                Assert.IsTrue(consoleOut.Contains(expectedConsoleOut[i]));
+            }
+        }
+    }
 }
