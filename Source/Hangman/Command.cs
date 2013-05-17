@@ -4,9 +4,9 @@ namespace HangmanGame
 {
     public static class Command
     {
-        public const string topScores = "top";
-        public const string restartGame = "restart";
-        public const string playerHint = "help";
-        public const string endGame = "exit";
+        public const string TopScores = "top";
+        public const string RestartGame = "restart";
+        public const string PlayerHint = "help";
+        public const string EndGame = "exit";
     }
 }
