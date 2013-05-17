@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="HangmanGame.Command" Collapsed="true">
+    <Position X="7.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAQkAA=</HashCode>
+      <FileName>Command.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HangmanGame.GameEngine" Collapsed="true">
+    <Position X="4.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAEACAAAAAABAAAAAAAIAAAIQAAAAIACAAAAEAAAI=</HashCode>
+      <FileName>GameEngine.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HangmanGame.GameRunner" Collapsed="true">
+    <Position X="4.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>GameRunner.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HangmanGame.Hangman" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="2.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAEAAAAAAAAAgAAIAIBIAEAAAAAAgAAAACAAAAAgIAA=</HashCode>
+      <FileName>Hangman.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="HangmanGame.ScoreBoard" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="4.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABABAAAEAAABAAEAAAIAAAAAAAAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>ScoreBoard.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="HangmanGame.ScoreEntry" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="4.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAAAAQAAAAAAAQAAAAEAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>ScoreEntry.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Interface Name="HangmanGame.IHangman" Collapsed="true">
+    <Position X="7.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAAAAAAAAAIBAAAAAAAAAgAAAAAAAAAAgIAA=</HashCode>
+      <FileName>IHangman.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="HangmanGame.IScoreBoard" Collapsed="true">
+    <Position X="7.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAABAAEAAAAAAAAAAAAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>IScoreBoard.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
